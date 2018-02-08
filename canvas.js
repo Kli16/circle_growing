@@ -21,10 +21,10 @@ var is_growing = function(rad){
   }
 }
 
-var r = 0;
+
 var growandshrink = function(e){
   window.cancelAnimationFrame(requestID);
-
+  var r = 0;
   var circle_grow = function(){
     context.clearRect(0, 0, 500, 500);
     context.beginPath();
@@ -44,14 +44,13 @@ var growandshrink = function(e){
 
 }
 
-var x = 250;
-var y = 250;
-var xvel = 2;
-var yvel = 1;
 
 var bounce = function(e){
   window.cancelAnimationFrame(requestID);
-
+  var x = 250;
+  var y = 250;
+  var xvel = Math.random() * 8 - 4;
+  var yvel = Math.random() * 8 - 4;
   var circle_bounce = function(){
     context.clearRect(0, 0, 500, 500);
     context.beginPath();
@@ -60,10 +59,10 @@ var bounce = function(e){
     context.stroke();
     x += xvel;
     y += yvel;
-    if (x == 470 || x == 30) {
+    if (x >= 470 || x <= 30) {
       xvel *= -1;
     }
-    if (y == 30 || y == 470){
+    if (y <= 30 || y >= 470){
       yvel *= -1;
     }
     //console.log(requestID);
