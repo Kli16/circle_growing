@@ -2,7 +2,7 @@ var canvas = document.getElementById("slate");
 var context = canvas.getContext('2d');
 var clear_button =  document.getElementById("clear");
 var stop_button = document.getElementById("stop");
-var r = 0;
+
 var growing;
 var requestID;
 
@@ -19,6 +19,8 @@ var is_growing = function(rad){
   }
 }
 var animate = function(e){
+  window.cancelAnimationFrame(requestID);
+  var r = 0;
   var circle_grow = function(){
     context.clearRect(0, 0, 500, 500);
     context.beginPath();
@@ -34,8 +36,10 @@ var animate = function(e){
     //console.log(requestID);
     requestID = window.requestAnimationFrame(circle_grow);
   }
-  circle_grow();
+  requestID = window.requestAnimationFrame(circle_grow);
+
 }
+
 
 var stopit = function(){
   window.cancelAnimationFrame(requestID);
